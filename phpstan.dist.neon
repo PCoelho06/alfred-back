@@ -1,5 +1,9 @@
 parameters:
+    symfony:
+        containerXmlPath: var/cache/dev/App_KernelDevDebugContainer.xml
     level: 6
+    excludePaths:
+        - tests/bootstrap.php
     paths:
         - bin/
         - config/
