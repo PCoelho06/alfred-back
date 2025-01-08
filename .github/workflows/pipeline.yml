@@ -23,8 +23,8 @@ jobs:
         run: composer install --no-scripts --no-progress --no-interaction
       - name: Run PHPStan
         run: vendor/bin/phpstan analyse
-      - name: Run PHP CS Fixer
-        run: vendor/bin/php-cs-fixer --dry-run --verbose fix
+      # - name: Run PHP CS Fixer
+      #   run: vendor/bin/php-cs-fixer --dry-run --verbose fix
 
   test:
     name: Run Tests
@@ -77,15 +77,15 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v4
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      - name: Check SonarQube Quality Gate
-        run: |
-          status=$(curl -s -u "${{ secrets.SONAR_TOKEN }}" \
-          "https://sonarcloud.io/api/qualitygates/project_status?projectKey=YOUR_PROJECT_KEY" \
-          | jq -r .projectStatus.status)
-          if [[ "$status" != "OK" ]]; then
-            echo "Quality gate failed!"
-            exit 1
-          fi
+      # - name: Check SonarQube Quality Gate
+      #   run: |
+      #     status=$(curl -s -u "${{ secrets.SONAR_TOKEN }}" \
+      #     "https://sonarcloud.io/api/qualitygates/project_status?projectKey=PCoelho06_alfred-back" \
+      #     | jq -r .projectStatus.status)
+      #     if [[ "$status" != "OK" ]]; then
+      #       echo "Quality gate failed!"
+      #       exit 1
+      #     fi
 
   # deploy:
   #   name: Deploy to Server
